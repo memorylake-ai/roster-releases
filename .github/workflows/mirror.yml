@@ -1,0 +1,58 @@
+# Release 转正后镜像到 CDN 源站（S3 → download.memorylake.ai，COS → download.memorylake.cn），脚本见 scripts/mirror.mjs。
+# GitHub Release 仍是正本；CDN 只是加速。没配目标时只核对，什么都不传。
+#
+# 仓库变量（Settings → Variables）：S3_BUCKET S3_REGION S3_PUBLIC_BASE CF_DISTRIBUTION_ID AWS_ROLE_ARN
+#                                     COS_BUCKET COS_REGION COS_PUBLIC_BASE COS_CDN_PURGE
+# 仓库密钥（Settings → Secrets）：     COS_SECRET_ID COS_SECRET_KEY
+# 补镜像 / 重跑：Actions → mirror → Run workflow，填 tag。
+name: mirror
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "要镜像的 tag（如 v0.1.27）"
+        required: true
+
+concurrency:
+  group: mirror
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write   # AWS OIDC
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        if: ${{ vars.AWS_ROLE_ARN != '' }}
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.S3_REGION }}
+
+      - name: Install tccli
+        if: ${{ vars.COS_CDN_PURGE == 'true' }}
+        run: pipx install tccli
+
+      - name: Mirror
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name || inputs.tag }}
+          S3_BUCKET: ${{ vars.AWS_ROLE_ARN != '' && vars.S3_BUCKET || '' }}
+          S3_REGION: ${{ vars.S3_REGION }}
+          S3_PUBLIC_BASE: ${{ vars.S3_PUBLIC_BASE }}
+          CF_DISTRIBUTION_ID: ${{ vars.CF_DISTRIBUTION_ID }}
+          COS_BUCKET: ${{ vars.COS_BUCKET }}
+          COS_REGION: ${{ vars.COS_REGION }}
+          COS_PUBLIC_BASE: ${{ vars.COS_PUBLIC_BASE }}
+          COS_CDN_PURGE: ${{ vars.COS_CDN_PURGE }}
+          COS_SECRET_ID: ${{ secrets.COS_SECRET_ID }}
+          COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
+        run: node scripts/mirror.mjs
