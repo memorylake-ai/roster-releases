@@ -9,13 +9,17 @@ This repository only hosts releases; the product page is <https://memorylake.ai/
 
 | Platform · 平台 | Installer · 安装包 |
 |---|---|
-| macOS, Apple silicon (M1 and later) | [Roster-mac-arm64.dmg](https://github.com/memorylake-ai/roster-releases/releases/latest/download/Roster-mac-arm64.dmg) |
-| macOS, Intel | [Roster-mac-x64.dmg](https://github.com/memorylake-ai/roster-releases/releases/latest/download/Roster-mac-x64.dmg) |
-| Windows 10/11, 64-bit | [Roster-win-x64.exe](https://github.com/memorylake-ai/roster-releases/releases/latest/download/Roster-win-x64.exe) |
+| macOS, Apple silicon (M1 and later) | [Roster-mac-arm64.dmg](https://download.memorylake.ai/roster/latest/Roster-mac-arm64.dmg) |
+| macOS, Intel | [Roster-mac-x64.dmg](https://download.memorylake.ai/roster/latest/Roster-mac-x64.dmg) |
+| Windows 10/11, 64-bit | [Roster-win-x64.exe](https://download.memorylake.ai/roster/latest/Roster-win-x64.exe) |
 
+The links above are served from our download CDN (a copy of the latest release here, updated automatically when a release is published).
+If they don't work for you, download the same files from the [latest release](https://github.com/memorylake-ai/roster-releases/releases/latest).
 All versions: [Releases](https://github.com/memorylake-ai/roster-releases/releases).
 
-Installed apps check this repository for updates on their own. · 安装后客户端会自动从这里检查更新。
+以上链接走下载加速 CDN（本仓库最新 Release 的副本，发版时自动同步）；打不开时可以从 [最新 Release](https://github.com/memorylake-ai/roster-releases/releases/latest) 下载同样的文件。
+
+Installed apps check for updates on their own, from the CDN, falling back to this repository. · 安装后客户端会自动检查更新：先查 CDN，查不通再查本仓库。
 
 ## Support · 支持
 
