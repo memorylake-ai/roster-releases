@@ -15,9 +15,10 @@ This repository only hosts releases; the product page is <https://memorylake.ai/
 
 The links above are served from our download CDN (a copy of the latest release here, updated automatically when a release is published).
 If they don't work for you, download the same files from the [latest release](https://github.com/memorylake-ai/roster-releases/releases/latest).
-All versions: [Releases](https://github.com/memorylake-ai/roster-releases/releases).
+All versions: [Releases](https://github.com/memorylake-ai/roster-releases/releases). What's new in each version: [CHANGELOG](CHANGELOG.md).
 
 以上链接走下载加速 CDN（本仓库最新 Release 的副本，发版时自动同步）；打不开时可以从 [最新 Release](https://github.com/memorylake-ai/roster-releases/releases/latest) 下载同样的文件。
+历次版本的更新内容见 [更新记录](CHANGELOG.md)。
 
 Installed apps check for updates on their own, from the CDN, falling back to this repository. · 安装后客户端会自动检查更新：先查 CDN，查不通再查本仓库。
 
