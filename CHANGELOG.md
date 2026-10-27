@@ -3,6 +3,40 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.33 · 2026-10-27
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.33)
+
+### 新功能
+- **新建 / 接入钉钉数字员工**：在「IM 接入 → 添加钉钉账号」里可以直接新建钉钉数字员工（几秒完成，不需要管理员后台，可指定主管），或接入企业里由你创建或负责的数字员工；账号卡片标出「钉钉数字员工 / 真人账号」，可在控制台删除数字员工、在钉钉中打开它，用它建员工时自动带出钉钉里的主管。
+- **生图模型**：员工设置「视觉模型」下面新增「生图模型」，可选自动、Codex 自带生图、阿里云 MaaS 或不开；员工被要求画图、做海报时会出图并发给你，约一分钟一张，不开时会直接说明做不到。
+
+### 改进
+- **首字头像带平台品牌色**：没有头像照片的数字员工，首字头像改为所在 IM 平台的品牌渐变。
+- **删除与退出登录即时反馈**：IM 接入页删除账号、退出登录时条目上显示进度，成功后立刻消失，不再等列表刷新；页面说明文字的排版也更松快。
+
+### 修复
+- **钉钉员工偶发长时间收不到消息**：同一台电脑上有多名钉钉员工时，偶尔会停在「接收端未运行」长达半小时；现在会很快自动恢复，长时间接不上时提醒并提供「重启」按钮。
+- **自动更新被旧的下载挡住**：下载过某个版本但还没安装、期间又发布了新版时，现在会直接提示最新版。
+- **新建钉钉多维表账本失败**：刚建好的表格偶尔读不到字段导致账本建不成，现在会稍等后自动重试。
+- **记忆回忆失败被当成答案**：回忆服务出错时，员工不会再把错误信息当作事实记下。
+
+---
+
+### New
+- **Create or connect DingTalk digital employees**: under IM accounts → Add DingTalk account you can now create a DingTalk digital employee directly (takes seconds, no admin console needed, supervisor selectable) or connect one in your organization that you created or are responsible for. Account cards show "DingTalk digital employee" or "Personal account"; digital employees can be deleted from the console and opened in DingTalk, and new employees created from them pick up their DingTalk supervisor automatically.
+- **Image model**: a new "Image model" setting below "Vision model" in employee settings — Automatic, Codex built-in, Alibaba Cloud MaaS, or Off. When asked for a picture or poster, the employee generates the image and sends it to you (about a minute per image); when off, it says it cannot.
+
+### Improvements
+- **Platform-colored initial avatars**: employees without a photo now show their initial on the brand gradient of their IM platform.
+- **Instant feedback when deleting or signing out**: on the IM accounts page, deleting an account or signing out shows progress on the item and removes it as soon as it succeeds, without waiting for the list to refresh; the page description is also better spaced.
+
+### Fixes
+- **DingTalk employees occasionally stopped receiving messages**: with several DingTalk employees on one computer, the receiver could stay "not running" for up to half an hour; it now recovers quickly, and shows a notice with a Restart button if it cannot reconnect.
+- **Auto-update blocked by an older download**: if a version was downloaded but not installed and a newer one was released meanwhile, the newest version is now offered directly.
+- **Creating a DingTalk AI table ledger failed**: a newly created table sometimes could not be read yet, so the ledger was not created; it now waits and retries.
+- **Failed memory recall treated as an answer**: when the recall service fails, the employee no longer records the error text as a fact.
+
 ## 0.1.32 · 2026-10-23
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.32)
