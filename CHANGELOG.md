@@ -3,6 +3,36 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.35 · 2026-10-29
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.35)
+
+### 新功能
+- **Telegram 接入**：「IM 接入」与新建向导新增 Telegram。在 Telegram 的 @BotFather 建好机器人，粘贴令牌并扫码绑定主管即可使用；私聊只接主管和主管允许的人，别人拉进的群需要主管在 Telegram 里批准。支持论坛话题、停止按钮与快捷回复按钮，机器人详情页可管理可以使用的人和已加入的群。
+
+### 改进
+- **Slack 任务结束后撤掉「取消执行」**：派活任务完成后，Slack 消息上的「取消执行」按钮会被撤掉，不再出现点了却无事可取消的情况。
+- **员工知道自己在哪个群、哪个话题**：在群聊和话题中，员工能看到所在的群名与话题名，更准确地理解「这个话题」指的是什么。
+
+### 修复
+- **排队中的请求取消不了**：还在排队或刚开始准备的请求现在也能取消，取消后不再收到「暂时无法处理」；群里只能取消自己发起的请求（主管除外）。
+- **部分命令在 IM 里无法放行**：一些普通命令在 IM 里点「放行」「同意」都不生效，现在可以正常放行；放行单只显示点了能成功的按钮。
+- **照抄名字确认对不上**：删除确认时，名字里的全角 / 半角括号、空格和大小写不再导致对不上；名字可以一键复制。
+
+---
+
+### New
+- **Telegram**: Telegram is now available under IM accounts and in the new-employee wizard. Create a bot with @BotFather in Telegram, paste its token and scan a code to bind the manager. Only the manager and people the manager allows can message the employee privately, and groups added by others need the manager's approval in Telegram. Forum topics, a stop button and quick-reply buttons are supported; the bot's details page lets you manage who can use it and which groups it has joined.
+
+### Improvements
+- **"Cancel" removed when a Slack task ends**: when a delegated task finishes, its "Cancel" button is removed from the Slack message instead of lingering with nothing to cancel.
+- **Employees know which group and topic they are in**: in group chats and topics, employees now see the group and topic names, so "this topic" is understood correctly.
+
+### Fixes
+- **Queued requests could not be cancelled**: requests that are still queued or being prepared can now be cancelled, and no "unable to process" reply follows; in groups, people can cancel only their own requests (the manager can cancel any).
+- **Some commands could not be allowed from IM**: certain ordinary commands could not be allowed with "Allow" or "Approve" in IM; they now can, and permission requests only show buttons that will work.
+- **Copy-the-name confirmation did not match**: delete confirmations no longer fail on full-width vs. half-width brackets, spaces or letter case, and the name can be copied with one click.
+
 ## 0.1.34 · 2026-10-28
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.34)
