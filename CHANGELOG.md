@@ -3,6 +3,56 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.34 · 2026-10-28
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.34)
+
+### 新功能
+- **Slack 接入**：「IM 接入」与新建向导新增 Slack。起名后在 Slack 里发送一条命令、确认授权，再填回验证码，即可自动建好并安装应用（也可手动填写应用凭据）；员工在频道中被 @ 或私聊时回复，审批、放行和提问选项在 Slack 里显示为按钮，缺权限时可一键「更新 Slack 应用」。
+- **回收站「彻底删除」**：「系统 → 回收站」中的员工可以彻底删除，删除其员工目录与默认工作目录，并吊销其独立的 MemoryLake 专属 key；你添加的工作目录、IM 平台中的应用和已记录的记忆不受影响。「···」菜单中不可用的操作会在下方写明原因。
+- **MemoryLake 生图模型**：员工设置的「生图模型」新增 6 个 MemoryLake 模型服务的模型，使用员工自己的 MemoryLake 账号（国际站 / 中国站）出图；员工尚未开通时会提示。
+- **全部放行「包括所有人」**：权限页的「全部放行」新增「包括所有人」，同事发起的对话、群里任何人触发的自动任务也直接执行（需二次确认）。任何人都能触发的自动任务被拦下时，权限页会说明原因并给出可行的处理方式。
+- **钉钉数字员工：权限提示与交给主管**：本机钉钉账号没有新建数字员工的权限时，入口页直接说明并提供「已开通，重新检查」；主管是其他人时，可选择「新建并交给主管」，由主管在自己电脑上的 Roster 中接入。
+- **查看更新内容**：新版本提示卡片和「系统」页的自动更新一行可直接打开对应版本的更新说明。
+
+### 改进
+- **群规则的默认规则固定在末尾**：每个群的规则表最后一条固定为「默认」规则，不可修改、删除或拖动；如需改变处理方式，在上方添加规则。已有设置自动转换，处理结果不变。
+- **新建自动任务只保留「创建」**：确认页去掉「创建并试运行」；「立即运行一次」只对按时间或手动运行的任务显示。
+- **权限配置异常时控制台提示**：员工的权限配置生成超时会自动重试；仍未成功时，员工状态中「权限配置」标红并写明原因，提供「重启」按钮并发送通知，不再让自动任务无声失败。
+
+### 修复
+- **飞书按群名查找群聊失败**：飞书员工按群名查找群聊时提示不可用的问题已修复。
+- **国际站员工无法回忆记忆**：使用 MemoryLake 国际站的员工回忆记忆失败的问题已修复；回忆结果也不再夹带模型的思考过程。
+- **OpenCode 免费用量用尽时长时间无回复**：现在会立即告知「OpenCode 免费模型的用量已达上限」，不再等待数分钟后回复通用提示；一条消息里同时带文字和附件时也不再额外等待说明，并且不再为非员工发起的会话推送通知。
+- **Codex 生图误报「未登录」**：Codex 登录信息保存在系统钥匙串中时，生图模型不再显示未登录。
+- **自动任务找不到工作目录**：未设置默认目录时，自动任务中的员工不再说「工作目录是空的」，可以使用全部已添加的目录。
+- **Pi 大脑无法生图**：使用 Pi 大脑的员工现在可以正常生成图片，且不会因超时重复出图。
+- **弹窗超出窗口**：窗口较矮时，弹窗高度不再超出屏幕，内容可单独滚动。
+
+---
+
+### New
+- **Slack**: Slack is now available under IM accounts and in the new-employee wizard. Pick a name, send one command in Slack, approve, and enter the verification code — the app is created and installed for you (you can also enter app credentials manually). Employees reply when @-mentioned in a channel or in direct messages; approvals, permission requests and question options appear as buttons, and "Update Slack app" fixes missing permissions in one step.
+- **Permanently delete from the Recycle Bin**: employees in System → Recycle Bin can now be permanently deleted, removing their employee folder and default working folder and revoking their dedicated MemoryLake key. Folders you added, apps on IM platforms and recorded memories are kept. Unavailable items in the "···" menu now show why.
+- **MemoryLake image models**: the "Image model" setting adds 6 models from the MemoryLake model service, using the employee's own MemoryLake account (international or China site); you are told if the employee has not set it up yet.
+- **"Include everyone" for Allow all**: the permissions page adds "Include everyone" under Allow all, so conversations started by colleagues and scheduled tasks anyone in a group can trigger also run without approval (requires confirmation). When such a task is blocked, the permissions page explains why and offers options that actually work.
+- **DingTalk digital employees: permission notice and hand-off**: if the DingTalk accounts on this computer cannot create digital employees, the start page says so up front with "Enabled — check again"; when the supervisor is someone else, you can choose "Create and hand to supervisor" so they connect it in Roster on their own computer.
+- **View what's new**: the update card and the auto-update row on the System page link directly to the release notes of that version.
+
+### Improvements
+- **Default group rule pinned to the end**: each group's rule list now ends with a fixed "Default" rule that cannot be edited, deleted or moved; add rules above it to change handling. Existing settings convert automatically with the same results.
+- **New scheduled tasks: "Create" only**: the confirmation page no longer offers "Create and test run"; "Run once now" appears only for time-based or manual tasks.
+- **Permission setup problems are shown in the console**: if generating an employee's permission settings times out it is retried; if it still fails, the "Permission settings" row turns red with the reason, a Restart button and a notification, instead of scheduled tasks failing silently.
+
+### Fixes
+- **Finding Feishu groups by name failed**: Feishu employees can look up group chats by name again.
+- **Memory recall failed on the international site**: employees using the MemoryLake international site can recall memories again, and recall answers no longer include the model's reasoning.
+- **Long silence when OpenCode free usage ran out**: the employee now says right away that the OpenCode free model usage limit has been reached instead of replying generically minutes later; messages that carry text and an attachment together no longer wait for a description, and conversations not started by the employee no longer trigger notifications.
+- **Codex image generation reported "not signed in"**: no longer happens when Codex credentials are stored in the system keychain.
+- **Scheduled tasks saw an empty working folder**: without a default folder, employees in scheduled tasks no longer say the working folder is empty and can use all added folders.
+- **Pi brain could not generate images**: employees using the Pi brain can generate images again, without duplicate images after timeouts.
+- **Dialogs taller than the window**: dialogs now stay within the window and their content scrolls.
+
 ## 0.1.33 · 2026-10-27
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.33)
