@@ -3,6 +3,40 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.36 · 2026-10-30
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.36)
+
+### 新功能
+- **本机权限改为系统沙箱（macOS）**：员工执行本机命令不再逐条放行。每次处理消息时，按是谁交代的划定能读写的范围，范围内直接执行，越界由系统拦下；同事发起的对话连不到内网和本机服务；登录凭据不再交给模型的运行环境。员工「设置 → 主管」新增「主管可以使用这台电脑上的文件与本机登录」，开启时主管交代的工作可以读取这台电脑上的文件、使用已登录的命令行工具，写入仍只限工作目录。
+- **接入私有化部署的 MemoryLake**：连接记忆服务时，除中国站与国际站外可选「私有化部署」，填写服务地址与 API key 即可。
+- **视觉模型可选「Codex（本机）」**：大脑是 Codex 时，视觉模型可以直接选「Codex（本机）」来看图，不必另外配置。
+
+### 改进
+- **权限页更清楚地提示风险**：「包括所有人」成为「全部放行」的下一级，标有「高风险」并写明后果，打开前需要输入确认短语，开启后页面顶部常驻提示、可一键收回。被系统拦下的操作也会出现在被拒记录里，并分开说明是连网络被拦还是访问了允许范围外的目录。
+
+### 修复
+- **Claude 命令行登录失效时说不出原因**：以前员工只回一句通用的「暂时无法处理」；现在会直接告诉提问的人是 Claude 命令行登录已失效、该怎么重新登录，大脑页和安装检查也会标黄提示。
+
+### 升级须知
+- 「主管可以使用这台电脑上的文件与本机登录」默认开启，升级后已有员工同样生效。如果是替别人部署（主管不是这台电脑的主人），请到员工的「设置 → 主管」关闭。
+
+---
+
+### New
+- **Local permissions now use the system sandbox (macOS)**: commands no longer need to be allowed one by one. Each time the employee handles a message, it gets a scope based on who asked; anything inside runs directly and anything outside is blocked by the system. Conversations started by colleagues cannot reach the local network or services on this computer, and sign-in credentials are no longer handed to the model's environment. A new setting under the employee's Settings → Manager, "The manager may use this computer's files and local sign-ins", lets work the manager asks for read files on this computer and use command-line tools already signed in here; writes stay limited to the working directory.
+- **Private-deployment MemoryLake**: when connecting the memory service, you can now choose "Private deployment" in addition to the China and international sites, and enter the service address and API key.
+- **"Codex (local)" as the vision model**: when the brain is Codex, you can pick "Codex (local)" as the vision model to read images, with no extra setup.
+
+### Improvements
+- **Clearer risk on the permissions page**: "Include everyone" is now a sub-option of "Allow everything", marked "High risk" with its consequences spelled out; turning it on requires typing a confirmation phrase, and while it is on a banner stays at the top of the page with a one-click "Turn off". Actions blocked by the system now appear in the denied list too, explaining whether a network connection was blocked or a directory outside the allowed scope was accessed.
+
+### Fixes
+- **No explanation when the Claude command line was signed out**: the employee used to reply only with a generic "unable to process"; it now tells the person asking that the Claude command-line sign-in has expired and how to sign in again, and the brain page and setup check flag it in yellow.
+
+### Before you update
+- "The manager may use this computer's files and local sign-ins" is on by default and applies to existing employees after the update. If you deploy for someone else (the manager is not the owner of this computer), turn it off under the employee's Settings → Manager.
+
 ## 0.1.35 · 2026-10-29
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.35)
