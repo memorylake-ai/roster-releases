@@ -3,6 +3,20 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.37 · 2026-11-02
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.37)
+
+### 修复
+- **MemoryLake 报错看得懂了**：连接 MemoryLake、更换 key、为员工开通记忆或浏览记忆失败时，以前常常只显示半句英文和一串数据；现在会显示服务端给出的原因（附错误代码）。
+- **长报错不再撑破窗口**：报错里夹着很长的地址、路径或数据时，对话框、侧栏、弹出提示会被撑出窗口；现在这些文字会自动换行。
+
+---
+
+### Fixes
+- **Readable MemoryLake errors**: when connecting MemoryLake, changing the key, setting up memory for an employee, or browsing memory failed, the message often showed only half a sentence followed by raw data; it now shows the reason given by the server, with its error code.
+- **Long errors no longer break out of the window**: long addresses, paths or data inside an error used to stretch dialogs, side panels and pop-up notices beyond the window; this text now wraps.
+
 ## 0.1.36 · 2026-10-30
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.36)
