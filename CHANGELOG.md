@@ -3,6 +3,34 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.38 · 2026-11-03
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.38)
+
+### 新功能
+- **把员工迁移到另一台电脑**：在员工卡片的「···」中选择「迁移到其他电脑」，设置密码后导出为加密的迁移包，可选导出后本机停止并移入回收站、或继续运行，并勾选要带走的凭据与文件；在新电脑的员工列表点「导入员工」，选包、输入密码，预检会列出兼容性、重名冲突和新电脑上不存在的文件夹（可逐个选本机位置），确认后导入。迁出的员工留在「系统 → 回收站」，确认新电脑运行正常后点「完成迁移」清理本机副本。支持 macOS 与 Windows 之间互迁，仅桌面客户端可用。
+
+### 改进
+- **自动任务新增「部分完成」**：自动任务有步骤被拦下、或需要授权才能继续时，运行记录不再显示为「完成」，而是黄色的「部分完成」并写明卡在哪一步，也不计入完成数；命令的错误被管道或脚本吞掉时，被拦下的步骤同样能被记录下来。
+
+### 修复
+- **开启系统沙箱后只读任务频繁失败**：使用 Claude 的员工在只读任务里创建临时文件、读取较长的命令输出时会失败，一些只读命令也会被当成修改操作拦下；现在这些操作可以正常进行，真正会对外修改的命令仍然拦截。
+- **同事对话与只读任务受本机个人设置影响**：使用 Claude 的员工在隔离的对话里会读到这台电脑主人自己的 Claude 项目记忆，照着其中的习惯操作，导致连不上内网等问题；现在隔离的对话不再加载这份记忆。
+- **两名员工端口相同时互相掉线**：两名员工设置了同一个 opencode 端口时，启动时会互相结束对方的进程、轮流掉线；现在会拒绝启动后一名并说明端口被谁占用。
+
+---
+
+### New
+- **Move an employee to another computer**: choose "Move to another computer" from an employee's "···" menu, set a password and export an encrypted migration package — choose whether this computer stops the employee and moves it to the recycle bin or keeps it running, and pick which credentials and files to bring. On the new computer, click "Import employee" in the employee list, pick the package and enter the password; a pre-check lists compatibility, name conflicts and folders that don't exist on the new computer (you can pick a local folder for each), then import. The migrated-out employee stays in "System → Recycle bin"; once the new computer is running fine, click "Finish migration" to clean up the local copy. Works between macOS and Windows, desktop app only.
+
+### Improvements
+- **"Partially done" for automations**: when a step of an automation is blocked or needs permission to continue, the run is no longer shown as "Done"; it is marked "Partially done" in yellow with the step it got stuck on, and doesn't count as completed. Blocked steps are now recorded even when a pipe or script swallowed the command's error.
+
+### Fixes
+- **Read-only tasks failing under the system sandbox**: employees using Claude couldn't create temporary files or read long command output in read-only tasks, and some read-only commands were blocked as if they made changes; these now work, while commands that really change things outside are still blocked.
+- **Colleague chats and read-only tasks affected by the computer owner's own settings**: in isolated conversations, employees using Claude loaded the computer owner's own Claude project memory and followed habits from it, which could break things such as reaching the internal network; isolated conversations no longer load it.
+- **Two employees on the same port knocking each other offline**: when two employees were set to the same opencode port, each would stop the other's process at startup and they took turns going offline; the second one now refuses to start and says which employee holds the port.
+
 ## 0.1.37 · 2026-11-02
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.37)
