@@ -3,6 +3,34 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.39 · 2026-11-04
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.39)
+
+### 新功能
+- **设置单次对话最长运行**：员工「设置」新增「对话」分组，可为「单次对话最长运行」选择默认（按所选大脑，30 分钟或 1 小时）、具体时长或「不限」。超过时长、或员工 10 分钟没有任何进展时，这一轮会停下并告诉提问人原因，不再悄悄重来；群里排队等到上限的消息也会当场说明前面的任务已经进行了多久。
+- **汇报工作进度**：在员工「设置 → 对话」中打开「汇报工作进度」后，处理时间较长的请求会先说明计划，处理中显示任务清单与当前步骤——飞书、企业微信、Slack、Telegram 更新在原来那条状态消息里（Slack、Telegram 群里还带「停止」按钮），钉钉机器人用一张随进展更新的进度卡片。任务进行中发送「进度」可随时查看，员工详情里也能看到正在处理的请求（见下一条）；「停止」「进度」这类指令不会留下回执，也不会写进记忆。
+- **查看员工「正在处理」的请求**：打开「汇报工作进度」的员工，详情的「运行」页签新增「正在处理」，列出提问人、单聊或群聊、正在做什么和已用时间，展开可看任务清单与执行步骤，也可以直接「停止」这项任务（员工会在会话中说明是主管停止的，已执行的操作不会撤销）。仍在时长内的长对话不再被误判为「卡住」。
+
+### 改进
+- **重启后接着做**：员工中途重启后，被打断的消息会带着上次做到哪继续处理，先核实再继续，不再从头重做。
+
+### 修复
+- **Hermes、Pi 大脑开启系统沙箱后无法启动**：使用 Hermes 的员工开启系统沙箱后打不开自己的数据、升级后第一次启动失败；使用 Pi 且开启系统证书的员工在沙箱里会直接崩溃。现在两者都能正常启动；万一升级收尾仍失败，员工会回复一句可以照着处理的说明。
+
+---
+
+### New
+- **Max run time per conversation**: a new "Conversations" group in an employee's Settings lets you set "Max run time per conversation" to the default (based on the selected brain, 30 minutes or 1 hour), a specific duration, or "No limit". When a turn runs past the limit, or the employee makes no progress for 10 minutes, it stops and tells the requester why instead of quietly starting over; a message that waited in a group queue up to the limit is answered right away with how long the task ahead of it has been running.
+- **Report work progress**: turn on "Report work progress" under Settings → Conversations, and long requests start with a plan, then show the task list and the current step while they run — in the existing status message on Feishu, WeCom, Slack and Telegram (with a "Stop" button in Slack and Telegram groups), and as a progress card that updates in place for DingTalk bots. Send "进度" or "/progress" at any time during a task to check on it, and see the request in the employee's details (next item); commands like "stop" and "progress" leave no receipt and aren't saved to memory.
+- **See what an employee is working on**: for employees with "Report work progress" on, the "Run" tab now has an "In progress" section showing the requester, direct message or group chat, what the employee is doing and how long it has taken; expand it to see the task list and steps, or "Stop" the task (the employee tells the conversation the manager stopped it; actions already taken are not undone). Long conversations still within their limit are no longer flagged as stuck.
+
+### Improvements
+- **Picks up where it left off after a restart**: if an employee restarts mid-task, the interrupted message is resumed with what was already done, verified first, instead of starting from scratch.
+
+### Fixes
+- **Hermes and Pi brains failing to start under the system sandbox**: with the system sandbox on, employees using Hermes couldn't open their own data and failed on the first start after an upgrade, and employees using Pi with system certificates enabled crashed in the sandbox. Both now start normally; if finishing an upgrade still fails, the employee replies with steps you can follow.
+
 ## 0.1.38 · 2026-11-03
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.38)
