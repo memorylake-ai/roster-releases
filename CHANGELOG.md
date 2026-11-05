@@ -3,6 +3,30 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.41 · 2026-11-06
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.41)
+
+### 新功能
+- **钉钉机器人员工可以用主管的钉钉账号办公**：在「IM 接入 → 钉钉机器人」详情里打开「以主管的钉钉账号办公」后，数字员工在主管本人交代的工作和自动任务中，以主管的钉钉账号处理钉盘、文档、日程、待办、AI 表格、审批与邮箱；其他成员提出的同类请求不会执行，员工发送消息仍使用机器人身份。需要主管在本机点「登录钉钉账号」完成授权，详情页会显示授权状态；登录失效时，被拒记录里可一键前往重新登录。默认关闭，开启后员工重启生效。
+
+### 改进
+- **员工代用钉钉命令行时更安全、可办的事更多**：员工通过钉钉命令行上传本机文件时，只能使用这一轮允许发送的文件；直接读写本机整个文件夹的操作一律拒绝。钉盘的改名、新建文件夹、复制、回收站、历史版本，以及钉钉文档的新建、更新、读取、搜索等操作现在都纳入权限管理，可以按规则放行。
+
+### 修复
+- **员工重启后派活任务一直停在「执行中」**：任务做到一半员工重启，任务记录会一直停在执行中，取消时提示没有可取消的任务，提出人也等不到结果；已批准还在排队的任务重启后会丢失。现在员工重启后会把没做完的任务标为失败并告知提出人，已批准未开始的任务会重新排队执行。
+
+---
+
+### New
+- **DingTalk bot employees can work with the supervisor's DingTalk account**: turn on "Work with the supervisor's DingTalk account" in the DingTalk bot details under IM, and the digital employee uses the supervisor's DingTalk account for Drive, Docs, Calendar, To-dos, AI Tables, Approvals and Mail in work the supervisor assigns and in automations. Similar requests from other members are not carried out, and the employee still sends messages as the bot. The supervisor authorizes it by clicking "Sign in to DingTalk" on this computer; the details page shows the authorization status, and when the sign-in expires a denial record links straight to signing in again. Off by default; takes effect after the employee restarts.
+
+### Improvements
+- **Safer, broader use of the DingTalk command line**: when an employee uploads a local file through the DingTalk command line, it can only use files it is allowed to send in that turn, and operations that read or write a whole local folder are refused. Renaming, creating folders, copying, the recycle bin and version history in DingTalk Drive, plus creating, updating, reading and searching DingTalk Docs, are now covered by permissions and can be allowed by rule.
+
+### Fixes
+- **Assigned tasks stuck "in progress" after an employee restart**: if an employee restarted while working on a task, the task stayed in progress forever, cancelling it said there was nothing to cancel, and the requester never heard back; approved tasks still waiting in the queue were lost. Now, after a restart, unfinished tasks are marked failed and the requester is told, and approved tasks that hadn't started are queued again.
+
 ## 0.1.40 · 2026-11-05
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.40)
