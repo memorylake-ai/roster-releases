@@ -3,6 +3,60 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.40 · 2026-11-05
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.40)
+
+### 新功能
+- **允许主管使用 Docker**：员工「设置 → 主管」新增「允许主管使用 Docker」开关（默认关闭）。开启后，主管交代的工作可以使用这台电脑上的 Docker，例如用容器运行测试数据库；只对主管本人交代的工作生效。容器可以读写这台电脑上的任意文件，请仅在信任主管时开启。操作因 Docker 被系统沙箱拦下时，权限页会直接给出「主管设置」入口。大脑为 Codex 时开关不生效，设置里会注明。
+- **沙箱里也能开分支工作区、收掉自己起的进程**：开启系统沙箱的员工，现在可以在仓库旁新建、列出、删除工作区（git worktree）——即使仓库里带有沙箱禁止写入的配置目录；也能结束自己在前面步骤里启动的服务进程，定时任务每一轮结束时会自动收掉这一轮留下的进程，不再越积越多。员工的自动记忆改存到它自己的目录。
+- **员工记得自己说过的话，重启后接着聊**：员工发出去的每条回复、群通知、私信和文件都会在本机留一份记录。单聊里，员工会带上自己最近 24 小时在这个会话里发过的内容——比如定时任务早上私信发了日报，你直接回「第三点展开说说」它也接得上；群聊里，员工能看到自己（包括定时任务）此前在群里说过的话。员工重启后会接着原来的对话继续，不再从头开始。
+
+### 改进
+- **审批放行后不重复操作**：主管放行后重新处理的消息，原来那一轮已经做成的对外操作（发消息、写入外部服务等）不会再做一遍。
+- **诊断包更完整**：导出诊断包时，额外带上每名员工最近的被拒记录（令牌等敏感内容已抹去）、工作目录设置和定时任务设置（不含任务提示词正文），排查权限问题更快。
+- **DeepSeek Harness 选阿里云 MaaS 时模型可下拉选择**：员工设置与模型页里的模型从文本框改为下拉列表；新增 deepseek-v4.1-flash，移除已下架的 deepseek-v3.2。
+- **工作目录与发文件更灵活，沙箱更严**：隐藏文件夹（如 ~/.config 下的目录）和 Windows 数据盘的根目录现在可以设为工作目录（未开启系统沙箱的员工仍不可以）；带 opencode 配置的文件夹也能用。文件名里含 token、password、.key 等字样的普通文件（如 design-tokens.json、Keynote 文件）不再被误拦，改为按文件类型和内容判断。系统沙箱同时禁止写入会在沙箱外被执行的位置（git 配置、shell 启动脚本、SSH 配置、登录启动项等）。
+
+### 修复
+- **频繁误报「被沙箱拦下」并提示「添加工作目录」**：员工只是读取了记录着旧报错的日志、或命令行打印了后台任务降优先级的警告，也会被记成被拦，回复和权限页反复要求添加工作目录，定时任务被记成「部分完成」。现在只认真正被拦的操作；原因不是缺少工作目录时会直接说明，不再给出无效的「添加工作目录」按钮。
+- **同事发起的对话能接触到员工的记忆**：同事单聊里的内容可能被记进员工的记忆、再带进别的同事的对话，同事的对话里也能查员工的记忆和聊天记录。现在员工自己的记忆只在主管的对话里使用，同事的对话不能查记忆与聊天记录。
+- **员工的「回忆」无法使用**：自 0.1.36 起员工调用回忆会被拒绝，现已恢复。
+- **钉钉网盘上传、下载找不到文件**：写工作目录里的完整路径会报错，写相对路径时文件下载到了别处。现在按员工当前所在的工作目录解析路径，下载完成后会说明文件存在哪里。
+- **普通报错被当成「需要授权」**：员工遇到参数写错之类的普通报错时，会误以为被拦而回复「换个说法再试一次」，重发也卡在同一处。现在员工会先按报错自行改正再试一次，仍不成才说明情况，不再让你换个说法。
+- **沙箱里 git 无法通过 SSH 连接（macOS，Claude 大脑）**：开启系统沙箱后，员工用 SSH 拉取、推送代码一律失败；带口令的私钥经 ssh-agent 也无法认证。现已修复。
+- **升级后自装的 Python 包丢失；DeepSeek Harness 版本不兼容导致员工起不来**：客户端更新工具链后，你在内置 Python 里自己装的包会丢失，现在会在后台自动补装。DeepSeek Harness SDK 改为锁定兼容版本，大脑页检测到不兼容的版本时会提示并给出改装命令。
+
+### 升级须知
+- 用 DeepSeek Harness + 阿里云 MaaS 且选了 deepseek-v3.2 的员工，请改选其他模型（该模型已下架）。
+- 大脑页提示「DeepSeek Harness SDK 版本不兼容」时，按提示改装即可。
+
+---
+
+### New
+- **Allow the manager to use Docker**: a new "Allow the manager to use Docker" switch under an employee's Settings → Manager (off by default). When on, work the manager asks for can use Docker on this computer — for example, running a test database in a container; it applies only to work the manager asks for. Containers can read and write any file on this computer, so turn it on only if you trust the manager. When a step is blocked by the system sandbox because it needs Docker, the Permissions tab links straight to "Manager settings". The switch has no effect with the Codex brain, and Settings says so.
+- **Worktrees and cleaning up processes inside the sandbox**: employees with the system sandbox on can now create, list and remove worktrees next to a repository — even when the repository contains configuration folders the sandbox won't let them write — and stop service processes they started in earlier steps. At the end of each scheduled-task run, processes left behind by that run are stopped automatically instead of piling up. The employee's auto-memory now lives in its own folder.
+- **Employees remember what they said, and pick up after a restart**: every reply, group notice, direct message and file an employee sends is now recorded locally. In a direct chat, the employee brings along what it sent in that chat over the last 24 hours — so if a scheduled task DMs you a daily report in the morning, you can just reply "expand on point 3". In group chats, the employee can see what it (including its scheduled tasks) said in the group before. After a restart, the employee continues the same conversation instead of starting over.
+
+### Improvements
+- **No repeated actions after approval**: when a message is re-processed after the manager approves it, external actions already completed in the original run (sending messages, writing to outside services, etc.) are not done again.
+- **More complete diagnostics bundle**: exporting diagnostics now also includes each employee's recent denial records (tokens and other secrets removed), working-directory settings and scheduled-task settings (without task prompts), so permission problems are faster to track down.
+- **Model dropdown for DeepSeek Harness with Alibaba Cloud MaaS**: in employee Settings and the Models page, the model is now a dropdown instead of a text box; deepseek-v4.1-flash is added and the retired deepseek-v3.2 is removed.
+- **More flexible working directories and file sending, stricter sandbox**: hidden folders (such as those under ~/.config) and the root of a Windows data drive can now be working directories (still not for employees without the system sandbox), and folders with an opencode configuration are accepted. Ordinary files whose names contain words like token, password or .key (such as design-tokens.json or Keynote files) are no longer blocked; files are judged by type and content instead. The system sandbox now also blocks writes to places that get executed outside it (git configuration, shell startup scripts, SSH configuration, login items, and so on).
+
+### Fixes
+- **Frequent false "blocked by the sandbox" with "add a working directory"**: an employee merely reading a log that contained old error lines, or a command printing a background-job priority warning, was recorded as blocked; replies and the Permissions tab kept asking you to add a working directory, and scheduled tasks were marked "partially completed". Now only actions that were really blocked count, and when the cause isn't a missing working directory it says so, without the useless "add working directory" button.
+- **Coworker conversations could reach the employee's memory**: content from a coworker's direct chat could be saved to the employee's memory and carried into another coworker's conversation, and coworker conversations could search the employee's memory and chat history. The employee's own memory is now used only in the manager's conversations, and coworker conversations can't search memory or chat history.
+- **Employee "recall" not working**: since 0.1.36 employees' recall requests were rejected; this is fixed.
+- **DingTalk Drive uploads and downloads couldn't find files**: a full path inside the working directory returned an error, and a relative path downloaded the file somewhere else. Paths are now resolved against the employee's current working directory, and downloads say where the file was saved.
+- **Ordinary errors treated as "needs authorization"**: on an ordinary error such as a wrong parameter, the employee could mistake it for being blocked and reply "try rephrasing and send again", then get stuck on the same error. Now it first corrects itself based on the error and tries again, explains only if that still fails, and no longer asks you to rephrase.
+- **git over SSH failing inside the sandbox (macOS, Claude brain)**: with the system sandbox on, pulling and pushing over SSH always failed, and passphrase-protected keys couldn't authenticate through ssh-agent. Fixed.
+- **Self-installed Python packages lost after an update; incompatible DeepSeek Harness stopping employees from starting**: after the client refreshed its toolchain, packages you had installed into the bundled Python were lost; they are now reinstalled automatically in the background. The DeepSeek Harness SDK is now pinned to a compatible version, and the Brains page warns about an incompatible version and shows the command to fix it.
+
+### Before you update
+- Employees using DeepSeek Harness with Alibaba Cloud MaaS and deepseek-v3.2 need to pick another model (it has been retired).
+- If the Brains page says the DeepSeek Harness SDK version is incompatible, reinstall it as shown.
+
 ## 0.1.39 · 2026-11-04
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.39)
