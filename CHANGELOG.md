@@ -3,6 +3,40 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.42 · 2026-11-10
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.42)
+
+### 新功能
+- **员工可以向你提问，回答后接着做**：遇到需要你拍板、又没法从消息、文件或记忆里推出来的事，数字员工会把问题连同 2–4 个选项（标出推荐）发到会话里，先把不依赖答案的部分做完。你回复序号、点按钮或直接写答案，回答会回到原来的会话，员工接着做完。群聊里只认提问人的回答；等待期间员工重启也不会丢。定时任务等没人能即时回答的场景不会发问，员工会按最合理的判断完成并写明假设。
+- **自动任务新增「周历」视图**：「自动任务」页和员工页签可以在「列表」与「周历」之间切换。周历按时间格展示一周的任务：已过去的显示已完成、失败或未运行，未来的显示计划；高频和收到消息时运行的任务单独列在上方；同一员工的任务时间重叠会提示要排队；空闲时段自动收起，每天的完成、失败、计划次数一目了然。
+
+### 改进
+- **控制台更安全，并新增命令行工具 rosterctl**：桌面端每次启动会为控制台生成访问令牌，本机其他程序不能再直接调用控制台接口。新增命令行工具 rosterctl，可以查看版本与运行状态、做自检、打开控制台的某一页。
+
+### 修复
+- **记忆回忆的会话归属与文件导入**：员工检索记忆时留下的会话现在归到员工自己的对话项目，带钉盘文件的回忆不再报错；钉钉发来的文件默认导入员工的对话项目；主管交代的工作和自动任务里检索记忆不再被误拦成需要审批。「记忆」页的「会话」里，回忆会话会被正确认出并默认收起，不再和真实对话混在一起。
+- **员工在沙箱里使用 gh 报「令牌无效」**：macOS 上本机已登录的员工，在沙箱中使用 gh 等命令行工具时会报证书校验失败或令牌无效，现在可以正常使用。
+
+### 升级须知
+- 如果你写过脚本直接调用本机控制台接口，升级后这些请求会被拒绝，请改用 rosterctl。
+
+---
+
+### New
+- **Employees can ask you a question and continue once you answer**: when something needs your decision and can't be worked out from messages, files or memory, the digital employee sends the question to the conversation with 2–4 options (the recommended one marked) and finishes everything that doesn't depend on the answer first. Reply with a number, tap a button or just write your answer, and it goes back into the same conversation so the employee can finish. In group chats only the person asked can answer; a pending question survives an employee restart. Where nobody can answer right away, such as scheduled tasks, the employee doesn't ask, makes the most reasonable call and states its assumptions.
+- **New "Week" view for automations**: the Automations page and the employee tab can switch between "List" and "Week". The week view lays out the week on a time grid: past runs show as done, failed or not run, upcoming ones as planned; frequent and on-message tasks have their own strip at the top; overlapping tasks of the same employee are flagged because they run one at a time; idle hours fold away, and each day shows its done, failed and planned counts.
+
+### Improvements
+- **A more secure console, plus the new rosterctl command line**: the desktop app now creates an access token for the console each time it starts, so other programs on the computer can no longer call the console directly. The new rosterctl command shows the version and status, runs a self-check and opens a given console page.
+
+### Fixes
+- **Memory recall conversations and file imports**: conversations left behind when employees search memory now belong to the employee's own conversation project, recall with DingTalk Drive files no longer fails, and files sent over DingTalk are imported into that project by default; searching memory in work the supervisor assigns and in automations is no longer mistakenly held for approval. Under "Conversations" on the Memory page, recall conversations are recognized and folded away instead of mixing with real conversations.
+- **"Invalid token" when employees use gh in the sandbox**: on macOS, employees with a local sign-in got certificate errors or "invalid token" when using gh and similar command-line tools in the sandbox; these now work.
+
+### Before you update
+- If you wrote scripts that call the local console directly, those requests will be refused after the update; switch to rosterctl.
+
 ## 0.1.41 · 2026-11-06
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.41)
