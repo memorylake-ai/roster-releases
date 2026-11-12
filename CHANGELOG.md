@@ -3,6 +3,18 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.43 · 2026-11-12
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.43)
+
+### 新功能
+- **单聊设置：选择员工回复谁的单聊**：员工设置页「IM 账号」新增「单聊」，回复范围可选「所有人」「指定的人」或「不回复」。选「指定的人」时，主管始终在名单里；其他人可以从搜索结果里选，也可以输入姓名按姓名添加——对方第一次发来单聊时按姓名识别，之后按账号识别，改名也不受影响。名单外的人发来的单聊不会被处理，但员工正在等对方回答、或员工近 24 小时主动联系过的人照常回复。支持钉钉、飞书、企业微信和 Slack；原来钉钉的「所有单聊」开关和名单会自动沿用。接收单聊的范围变化后需要重启员工。
+
+---
+
+### New
+- **Direct message settings: choose whose DMs an employee answers**: the employee's settings page has a new "Direct messages" row under IM accounts, with three reply scopes: "Everyone", "Specific people" or "No one". With "Specific people", the supervisor is always on the list; add others from search results or by typing a name — the person is matched by name on their first DM and by account after that, so a later name change doesn't matter. DMs from people outside the list are not handled, except from someone the employee is waiting on for an answer or has reached out to in the past 24 hours. Works on DingTalk, Feishu, WeCom and Slack; existing DingTalk "all DMs" and allowlist settings carry over automatically. Restart the employee after changing whether it receives DMs.
+
 ## 0.1.42 · 2026-11-10
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.42)
