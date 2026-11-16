@@ -3,6 +3,28 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.44 · 2026-11-16
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.44)
+
+### 新功能
+- **rosterctl 可以帮你改配置**：命令行工具 rosterctl 现在不止能查看，还能新建和修改员工、IM 接入、大脑、技能、群聊设置和自动任务，以及开通 MemoryLake，方便让 AI 编程工具代你操作。它默认只放行安全的操作：涉及密钥、彻底删除等需要你本人在控制台完成，命令行也不接受直接传入密钥；加 `--plan` 可以先预览、不做任何改动。由它创建或修改的自动任务，详情页会显示「AI 工具 创建于 …」。
+
+### 修复
+- **IM 接入页飞书、企业微信、钉钉图标不显示**：0.1.42 起控制台 IM 接入页的这三个图标显示不出来，现在恢复正常。
+- **飞书群里别的机器人 @ 员工，员工会当成真人回复**：其他机器人（包括另一位飞书员工）在群里 @ 员工时，员工会把它当成真人消息回复，两个员工可能互相刷屏；群聊上下文里其他机器人说的话也会被当成员工自己说的。现在机器人发来的消息不再交给员工处理，上下文里会标注为「机器人」。
+- **大脑页「测一下」要等 90 秒才报超时**：模型的 key 过期或没有权限时，「测一下」要等 90 秒才显示「命令超时」；现在会立即显示真正的原因，报错里也不再夹杂乱码。
+
+---
+
+### New
+- **rosterctl can now change settings for you**: the rosterctl command line can now create and edit employees, IM connections, brains, skills, group chat settings and scheduled tasks, and set up MemoryLake — so an AI coding tool can do it on your behalf. Only safe operations are allowed by default: anything involving secrets or permanent deletion has to be done by you in the console, and secrets can't be passed on the command line. Add `--plan` to preview a change without applying it. Scheduled tasks created or edited this way show "Created by an AI tool on …" on their detail page.
+
+### Fixes
+- **Feishu, WeCom and DingTalk icons missing on the IM connections page**: since 0.1.42 these three icons didn't show in the console; they're back.
+- **Employees answered other bots' @-mentions in Feishu groups as if from a person**: when another bot (including another Feishu employee) @-mentioned an employee in a group, the employee replied as if a person had asked, and two employees could keep replying to each other; other bots' messages in the group context were also attributed to the employee. Bot messages are no longer handed to the employee, and they're labelled "Bot" in the context.
+- **"Test" on the Brain page took 90 seconds to time out**: when a model's key had expired or lacked permission, "Test" waited 90 seconds and then said the command timed out; it now shows the real reason right away, without garbled characters.
+
 ## 0.1.43 · 2026-11-12
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.43)
