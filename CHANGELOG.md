@@ -3,6 +3,26 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.45 · 2026-11-17
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.45)
+
+### 新功能
+- **本机数字员工协作（飞书）**：同一台电脑上、同一企业的数字员工可以在飞书「协作群」里互相 @ 提出请求、交付结果，往来人人可见，对外有影响的事仍由各自的主管审批。在新页面「团队协作」打开「本机数字员工协作」（默认关闭），再在员工的「群聊」设置里标出协作群即可；页面上有搭建引导、团队一览和最近 7 天的往来。同事超时没回复、或有人久未回答员工的提问，员工会在群里告知或提醒一次；新的自动任务预设「团队汇报」会在工作日 10 点、16 点向主管汇总团队协作的进展。
+- **在 AI 中使用 Roster**：控制台侧栏新增「在 AI 中使用 Roster」，一键把命令行工具和 Roster 技能装进 Claude Code、Codex、OpenCode，之后在这些 AI 工具里用一句话就能搭建和管理员工，AI 会先给你看计划，确认后再动手；需要密钥、扫码、放开权限的事仍由你在桌面端完成。页面上能看到每个工具的安装状态、AI 工具做过的修改（「操作记录」），以及几句可直接复制的示例。
+
+### 修复
+- **开了 Clash fake-ip 模式的电脑上，主管以外的人找员工时员工连不上模型**：现在可以正常回复。
+
+---
+
+### New
+- **Employee collaboration on this computer (Feishu)**: digital employees on the same computer and in the same organization can now @-mention each other in Feishu "collaboration groups" to make requests and hand over results, with every exchange visible in the group; anything with outside impact still goes to each employee's own manager for approval. Turn on "Employee collaboration on this computer" on the new Teamwork page (off by default), then mark collaboration groups in each employee's Group chat settings; the page also has a setup guide, a team overview and the last 7 days of exchanges. When a colleague doesn't reply in time, or a person hasn't answered an employee's question, the employee posts one notice or reminder in the group, and the new "Team report" scheduled-task preset sums up the team's progress for the manager at 10:00 and 16:00 on workdays.
+- **Use Roster in AI tools**: a new "Use Roster in AI tools" page in the sidebar installs the command line tool and the Roster skill into Claude Code, Codex and OpenCode in one click, so you can set up and manage employees there with a single sentence — the AI shows you a plan first and acts only after you confirm; anything needing secrets, QR-code scans or extra permissions is still done by you in the desktop app. The page shows each tool's install status, the changes AI tools have made (Activity), and a few examples you can copy.
+
+### Fixes
+- **On computers using Clash in fake-ip mode, employees couldn't reach their model when someone other than their manager messaged them**: they now reply normally.
+
 ## 0.1.44 · 2026-11-16
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.44)
