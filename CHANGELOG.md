@@ -3,6 +3,18 @@
 Every release of the Roster desktop app, newest first. Installed apps update themselves; downloads are on the [README](README.md).
 Roster 数字员工桌面客户端的历次更新，最新的在最上面。已安装的客户端会自动更新；下载见 [README](README.md)。
 
+## 0.1.46 · 2026-11-19
+
+[Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.46)
+
+### 新功能
+- **MemoryLake：记忆与模型服务用同一个账号**：新建数字员工时，「使用 MemoryLake」一个开关同时开通长期记忆和模型服务（默认开启）；关掉则用 OpenCode 免费模型、不保存长期记忆。本机已连接 MemoryLake、且没有手动设过默认模型时，OpenCode、DeepSeek Harness、Hermes、Pi 默认使用 MemoryLake 的模型（Claude Code 与 Codex 仍用本机登录）。「大脑」页顶部新增 MemoryLake 卡片，可连接账号、查看还有几名员工没开通；「记忆与上下文」页可「全部开通」。
+
+---
+
+### New
+- **MemoryLake: one account for memory and models**: when you create a digital employee, a single "Use MemoryLake" switch turns on both long-term memory and the model service (on by default); turn it off to use OpenCode's free models without long-term memory. If this computer is connected to MemoryLake and you haven't set default models yourself, OpenCode, DeepSeek Harness, Hermes and Pi now use MemoryLake models by default (Claude Code and Codex still use their own sign-in on this computer). A new MemoryLake card at the top of the Brains page lets you connect the account and shows how many employees aren't set up yet, and the Memory & context page has "Enable all".
+
 ## 0.1.45 · 2026-11-17
 
 [Release](https://github.com/memorylake-ai/roster-releases/releases/tag/v0.1.45)
